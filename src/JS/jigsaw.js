@@ -54,62 +54,95 @@ function criarPuzzle() {
 }
 
 function configurarDrag(tile) {
-    tile.draggable = true;
-    
-    tile.addEventListener('dragstart', (e) => {
-        if (isWin) return; // Impede interações após vitória
-        draggingTile = tile;
-        const tileObj = tiles.find(t => t.element === tile);
-        
-        if (tileObj.isCorrect) {
-            // Impede o arrasto se a peça estiver na posição correta
+    if ("ontouchstart" in window) {
+        // Configuração para dispositivos móveis
+        tile.addEventListener('touchstart', (e) => {
+            if (isWin) return;
+            draggingTile = tile;
+            const tileObj = tiles.find(t => t.element === tile);
+
+            if (tileObj.isCorrect) {
+                e.preventDefault();
+                return;
+            }
+
+            originalX = tileObj.x;
+            originalY = tileObj.y;
+            tile.classList.add('dragging');
+        });
+
+        tile.addEventListener('touchmove', (e) => {
             e.preventDefault();
-            return;
-        }
-        
-        originalX = tileObj.x;
-        originalY = tileObj.y;
-        tile.classList.add('dragging');
-        e.dataTransfer.setData('text/plain', '');
-    });
-    
-    tile.addEventListener('dragend', () => {
-        tile.classList.remove('dragging');
-        verificarPosicao(tile);
-        verificarVitoria();
-    });
-    
-    tile.addEventListener('dragover', (e) => {
-        e.preventDefault();
-    });
-    
-    tile.addEventListener('drop', (e) => {
-        if (isWin) return; // Impede interações após vitória
-        e.preventDefault();
-        const tileObj = tiles.find(t => t.element === tile);
-        
-        // Impede a troca se a peça de destino estiver na posição correta
-        if (draggingTile && draggingTile !== tile && !tileObj.isCorrect) {
-            trocarPosicoes(draggingTile, tile);
-        }
-    });
+            const touch = e.touches[0];
+            const moveX = touch.pageX - tile.offsetWidth / 2;
+            const moveY = touch.pageY - tile.offsetHeight / 2;
+
+            tile.style.left = `${moveX}px`;
+            tile.style.top = `${moveY}px`;
+        });
+
+        tile.addEventListener('touchend', () => {
+            tile.classList.remove('dragging');
+            verificarPosicao(tile);
+            verificarVitoria();
+        });
+    } else {
+        // Configuração para desktop
+        tile.draggable = true;
+
+        tile.addEventListener('dragstart', (e) => {
+            if (isWin) return;
+            draggingTile = tile;
+            const tileObj = tiles.find(t => t.element === tile);
+
+            if (tileObj.isCorrect) {
+                e.preventDefault();
+                return;
+            }
+
+            originalX = tileObj.x;
+            originalY = tileObj.y;
+            tile.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', '');
+        });
+
+        tile.addEventListener('dragend', () => {
+            tile.classList.remove('dragging');
+            verificarPosicao(tile);
+            verificarVitoria();
+        });
+
+        tile.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        tile.addEventListener('drop', (e) => {
+            if (isWin) return;
+            e.preventDefault();
+            const tileObj = tiles.find(t => t.element === tile);
+
+            if (draggingTile && draggingTile !== tile && !tileObj.isCorrect) {
+                trocarPosicoes(draggingTile, tile);
+            }
+        });
+    }
 }
 
 function trocarPosicoes(tile1, tile2) {
     const tile1Obj = tiles.find(t => t.element === tile1);
     const tile2Obj = tiles.find(t => t.element === tile2);
-    
+
     const tempX = tile1Obj.x;
     const tempY = tile1Obj.y;
-    
+
     posicionarTile(tile1, tile2Obj.x, tile2Obj.y);
     posicionarTile(tile2, tempX, tempY);
-    
+
     tile1Obj.x = tile2Obj.x;
     tile1Obj.y = tile2Obj.y;
     tile2Obj.x = tempX;
     tile2Obj.y = tempY;
-    
+
     moveCount++;
     document.getElementById('moveCount').textContent = moveCount;
 }
@@ -122,10 +155,9 @@ function posicionarTile(tile, x, y) {
 function verificarPosicao(tile) {
     const tileObj = tiles.find(t => t.element === tile);
     if (tileObj.x === tileObj.correctX && tileObj.y === tileObj.correctY) {
-        // Marca a peça como correta
         tileObj.isCorrect = true;
-        tile.classList.add('correct-position'); // Adiciona a classe para cor verde
-        tile.draggable = false; // Torna a peça imutável
+        tile.classList.add('correct-position');
+        tile.draggable = false;
     } else {
         tileObj.isCorrect = false;
         tile.classList.remove('correct-position');
@@ -134,15 +166,15 @@ function verificarPosicao(tile) {
 }
 
 function verificarVitoria() {
-    if (isWin) return; // Impede múltiplas checagens de vitória
+    if (isWin) return;
 
     const vitoria = tiles.every(tile => tile.isCorrect);
-    
+
     if (vitoria) {
         isWin = true;
         setTimeout(() => {
             alert(`Parabéns! Você venceu em ${moveCount} movimentos! Agora você será redirecionado para o quiz.`);
-            window.location.href = "quiz.html"; // Altere "quiz.html" para o caminho da página do seu quiz
+            window.location.href = "quiz.html";
         }, 300);
     }
 }
@@ -151,12 +183,12 @@ function embaralhar() {
     for (let i = 0; i < 100; i++) {
         const tile1 = tiles[Math.floor(Math.random() * tiles.length)];
         const tile2 = tiles[Math.floor(Math.random() * tiles.length)];
-        
+
         if (tile1 !== tile2 && !tile1.isCorrect && !tile2.isCorrect) {
             trocarPosicoes(tile1.element, tile2.element);
         }
     }
-    
+
     moveCount = 0;
     document.getElementById('moveCount').textContent = moveCount;
     isWin = false;
@@ -169,3 +201,5 @@ function novoJogo() {
 }
 
 novoJogo();
+
+
