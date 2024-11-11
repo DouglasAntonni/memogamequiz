@@ -1,0 +1,177 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive; /* Fonte estilizada */
+    
+}
+
+/* Mobile-First CSS */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/bg.jpeg');
+    user-select: none;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: url('../images/bg3.jpeg');
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #686af0;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #000000;
+    text-align: center;
+}
+
+.timer,
+.score {
+    color: #686af0;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px #000;
+}
+
+.reset {
+    padding: 12px 18px;
+    background: #ffffff;
+    color: #686af0;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px solid #000;
+    transition: all 0.3s;
+}
+
+.reset:active {
+    transform: scale(0.95);
+}
+
+.reset:hover {
+    background: #ec38bc;
+    color: #fff;
+}
+
+.game {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+    width: 100%;
+    padding-top: 100%;
+    /* Mantém o aspecto quadrado */
+    position: relative;
+    background: #404040;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+    overflow: hidden;
+    filter: drop-shadow(2px 2px 4px #000000cb);
+    /* Evita que a imagem ultrapasse os limites do card */
+}
+.item:not(.boxOpen) {
+    background-image: url('../images/logo.jpeg'); /* Caminho para a imagem de verso da carta */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #000;
+    filter: drop-shadow(2px 2px 4px #000000cb);
+    
+    
+}
+.item.boxOpen::after {
+    transform: rotateY(180deg);
+}
+
+.item.boxOpen {
+    background: #ec38bc;
+    transform: none;
+}
+
+.item.matched {
+    background-color: #32cd32;
+    transform: rotateY(0deg);
+}
+
+.imagem-carta {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cobre todo o card, mantendo a proporção */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 500px;
+    }
+}
+
+.footer {
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 2px 2px 3px #000;
+    font-size: 0.9em;
+    color: #686af0;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s, filter 0.3s;
+    filter:drop-shadow(2px 2px 4px #000000)
+}
+
+/* Efeito Hover para cada plataforma */
+.icon.instagram:hover img {
+    filter: brightness(0) saturate(100%) invert(40%) sepia(86%) saturate(2816%) hue-rotate(319deg) brightness(100%) contrast(102%) drop-shadow(2px 2px 4px #000000) ;
+    
+}
+
+.icon.whatsapp:hover img {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(74%) saturate(378%) hue-rotate(90deg) brightness(91%) contrast(89%) drop-shadow(2px 2px 4px #000000);
+}
+
+.icon img:hover {
+    transform: scale(1.2);
+}

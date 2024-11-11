@@ -1,0 +1,64 @@
+/* Exemplo de CSS básico para o quiz */
+#quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f4f4f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 1px 1px 3px black;
+}
+
+.quiz-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    transition: all 0.3s ease; 
+    cursor: pointer;
+}
+.resetQuiz{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    transition: all 0.4s ease; 
+    cursor: pointer;
+}
+#feedback {
+    font-weight: bold;
+    margin-top: 10px;
+}
+/* Estilos gerais para os botões */
+
+/* Estilo para o botão correto (verde) */
+.btn.correct {
+    background: linear-gradient(45deg, #28a745, #34d058); /* Gradiente de verde */
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilo para o botão incorreto (vermelho) */
+.btn.incorrect {
+    background: linear-gradient(45deg, #dc3545, #e74c3c); /* Gradiente de vermelho */
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Efeito de foco */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombras leves ao focar */
+}
+
