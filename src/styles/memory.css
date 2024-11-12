@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif; /* Fonte estilizada */
+    font-family: "Comic Neue", cursive; /* Fonte estilizada */
     
 }
 
@@ -36,6 +36,7 @@ h2 {
     text-transform: uppercase;
     text-shadow: 2px 2px 5px #000000;
     text-align: center;
+    font-size: 2.5rem;
 }
 
 .timer,
@@ -139,13 +140,15 @@ h2 {
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    text-shadow: 2px 2px 3px #000;
+    text-shadow: 2px 2px 3px #0000004f;
     font-size: 0.9em;
-    color: #ffffff;
+    
 }
 
 .footer p {
     margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #3d3d3d;
     
 }
 
@@ -174,4 +177,26 @@ h2 {
 
 .icon img:hover {
     transform: scale(1.2);
+}
+/* Estilo do parágrafo com créditos */
+.credits {
+    font-size: 14px;
+    text-align: center;
+    color: #888;
+    font-family: 'Arial', sans-serif;
+    margin-top: 20px;
+}
+
+/* Estilo para o link do desenvolvedor */
+.developer-link {
+    color: #1e90ff; /* Cor vibrante */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold;
+    transition: all 0.3s ease; /* Animação suave para hover */
+}
+
+/* Efeito de hover no link */
+.developer-link:hover {
+    color: #ff6347; /* Altera a cor do link para laranja ao passar o mouse */
+    text-decoration: underline; /* Adiciona o sublinhado quando passar o mouse */
 }
