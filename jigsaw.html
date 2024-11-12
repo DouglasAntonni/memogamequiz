@@ -16,23 +16,14 @@
 <body>
     <body>
         <div class="container">
-            <h2>Jardim Medicinal</h2>
-            <div class="score-panel">
-                <div class="timer">Tempo: <span id="time">120</span>s</div>
-                <div>Plantas encontradas: <span id="score">0</span>/8</div>
+            <div class="game-container">
+                <h1>🌿 Jogo da Velha das Plantas 🌿</h1>
+                <div class="status" id="status">Vez da Camomila</div>
+                <div class="board" id="board"></div>
+                <button class="reset-btn" id="resetBtn">Reiniciar Jogo</button>
+                <button class="reset-btn" id="quizButton">Ir para o Quiz</button>
             </div>
-            
-            <div class="garden-container" id="garden">
-                <!-- Plants will be added here via JavaScript -->
-            </div>
-        
-            <div id="overlay"></div>
-            <div id="infoModal" class="info-modal">
-                <span class="close-button" onclick="closeModal()">×</span>
-                <img id="plantImage" class="modal-image" alt="Imagem da planta medicinal">
-                <h2 id="plantName"></h2>
-                <p id="plantInfo"></p>
-            </div>
+
 
             <!-- Footer -->
             <div class="footer">
