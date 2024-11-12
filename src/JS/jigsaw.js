@@ -1,11 +1,11 @@
 const plants = {
     X: {
-        name: 'Camomila',
-        img: 'src/images/Garden/img1.png'
+        name: 'Comida Saldável',
+        img: 'src/images/Garden/img2.png'
     },
     O: {
-        name: 'Hortelã',
-        img: 'src/images/Garden/img2.png'
+        name: 'Medicamentos',
+        img: 'src/images/Garden/img1.png'
     }
 };
 
@@ -98,9 +98,7 @@ function makeMove(index) {
         
         document.getElementById('status').textContent = 
         `${plants[currentPlayer].name} venceu! 🎉`;
-        setTimeout(() => {
-            resetGame();
-        }, 2000);
+        
             return;
     }
     

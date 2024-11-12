@@ -110,17 +110,24 @@ function endQuiz() {
     const quizContainer = document.getElementById("quiz-container");
 
     if (score > quizQuestions.length / 2) {
-        quizContainer.innerHTML = `
+      quizContainer.innerHTML = `
             <h2>Quiz Completo!</h2>
             <p>Você acertou ${score} de ${quizQuestions.length} perguntas.</p>
             <p>Parabéns! Você concluiu todas as fases do jogo!</p>
+            <br>
+            <p class="Redirect">Redirecionando para a página de agradecimento...</p>
+            <div class="loading-container">
+                <div class="spinner"></div>
+            </div>
         `;
-            window.location.href = "obrigado.html";
+      setTimeout(() => {
+        window.location.href = "obrigado.html"; // Redireciona após 3 segundos
+      }, 5000);
     } else {
-        quizContainer.innerHTML = `
+      quizContainer.innerHTML = `
             <h2>Quiz Completo!</h2>
             <p>Você acertou ${score} de ${quizQuestions.length} perguntas.</p>
-            <p>Tente outra vez!</p>
+            <p>Não se preocupe, tente novamente!</p>
             <button class="resetQuiz"  onclick="restartQuiz()">Reiniciar Quiz</button>
         `;
     }

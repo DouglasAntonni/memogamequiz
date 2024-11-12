@@ -62,3 +62,49 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombras leves ao focar */
 }
 
+/* Mensagem de Redirecionamento */
+.Redirect {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+    align-items: center;
+    text-align: center;
+}
+
+/* Container do Spinner */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Spinner (Círculo giratório) */
+.spinner {
+    border: 6px solid #f3f3f3; /* Cor do fundo */
+    border-top: 6px solid #4CAF50; /* Cor da linha que gira */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite; /* Aplicando animação de rotação */
+}
+/* Garante que o conteúdo da página se torna visível de forma suave */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Definindo a animação do spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
