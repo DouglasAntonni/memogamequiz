@@ -16,13 +16,23 @@
 <body>
     <body>
         <div class="container">
+            <h2>Jardim Medicinal</h2>
+            <div class="score-panel">
+                <div class="timer">Tempo: <span id="time">120</span>s</div>
+                <div>Plantas encontradas: <span id="score">0</span>/8</div>
+            </div>
             
-            <h2>Quebra-Cabeças</h2>
-            <div class="moves">Movimentos: <span id="moveCount">0</span></div>
-    <div class="puzzle-container" id="puzzle"></div>
-    <div class="controls">
-        <button onclick="novoJogo()">Novo Jogo</button>
-    </div>
+            <div class="garden-container" id="garden">
+                <!-- Plants will be added here via JavaScript -->
+            </div>
+        
+            <div id="overlay"></div>
+            <div id="infoModal" class="info-modal">
+                <span class="close-button" onclick="closeModal()">×</span>
+                <img id="plantImage" class="modal-image" alt="Imagem da planta medicinal">
+                <h2 id="plantName"></h2>
+                <p id="plantInfo"></p>
+            </div>
 
             <!-- Footer -->
             <div class="footer">
